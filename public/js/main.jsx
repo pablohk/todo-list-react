@@ -60,9 +60,7 @@ const Title = ({todoCount}) => {
 };
 
 const TodoForm = ({addTodo}) => {
-  // Input Tracker
   let input;
-  // Return JSX
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
@@ -78,64 +76,67 @@ const TodoForm = ({addTodo}) => {
 };
 
 const Todo = ({todo, remove}) => {
-  // Each Todo
   return (
     <div className="list-group-item">
       <button  className="btn btn-danger"
         onClick={(e) => {
           remove(todo.id);}}>Delete</button>
-      <p>{todo.id}: {todo.text}</p>
+      <p>Task {todo.id}: {todo.text}</p>
     </div>);
 };
 
 const TodoList = ({todos, remove}) => {
-  // Map through the todos
   const todoNode = todos.map((todo) => {
     return (<Todo todo={todo} key={todo.id} remove={remove}/>);
   });
   return (<div className="list-group">{todoNode}</div>);
 };
 
-// Contaner Component
-// Todo Id
+const RemovedList= (props)=>{
+  return (
+    <div>
+      <ul className="list-group">
+        <p>Deleted itmes</p>
+        {props.remov.map((elem)=><li className="list-group-item" key={elem.id}>
+          task {elem.id}: {elem.text}</li>)}
+      </ul>
+    </div>);
+};
+
 window.id = 0;
 class TodoApp extends React.Component{
   constructor(props){
-    // Pass props to parent class
     super(props);
-    // Set initial state
     this.state = {
       data: []
     };
+    this.removed=[];
     this.apiUrl = 'http://5a6b0a4f8bdfbe0012adc187.mockapi.io/api/todos';
   }
-  // Lifecycle method
+
   componentDidMount(){
-    // Make HTTP reques with Axios
     axios.get(this.apiUrl)
       .then((res) => {
-        // Set state with result
         this.setState({data:res.data});
       });
   }
-  // Add todo handler
+
   addTodo(val){
-    // Assemble data
     const todo = {text: val};
-    // Update data
     axios.post(this.apiUrl, todo)
        .then((res) => {
          this.state.data.push(res.data);
          this.setState({data: this.state.data});
        });
   }
-  // Handle remove
+
   handleRemove(id){
     // Filter all todos except the one to be removed
     const remainder = this.state.data.filter((todo) => {
+      if(todo.id===id) this.removed.push(todo);
       if(todo.id !== id) return todo;
     });
-    // Update state with filter
+    // console.log(this.removed);
     axios.delete(this.apiUrl+'/'+id)
       .then((res) => {
         this.setState({data: remainder});
@@ -143,7 +144,6 @@ class TodoApp extends React.Component{
   }
 
   render(){
-    // Render JSX
     return (
       <div>
         <Title todoCount={this.state.data.length}/>
@@ -152,6 +152,7 @@ class TodoApp extends React.Component{
           todos={this.state.data}
           remove={this.handleRemove.bind(this)}
         />
+        <RemovedList remov={this.removed} />
       </div>
     );
   }

@@ -28,7 +28,7 @@ html {
 }
 #root{
   width: 70%;
-  margin:10% 15%;
+  margin:5% 15%;
   padding:5%;
   line-height: 1.1rem;
   border: 2px solid red;
@@ -46,11 +46,11 @@ header{
 .list-group-item{
   display: flex;
   flex-flow: row nowrap;
-  align-content:center;
+  align-items: center;
 }
-.list-group-item > *{
-  margin-right: 2rem;
 
+.list-group-item > *{
+  margin: 0 2rem 0 0;
 }
 
 /* Responsive Media Queries --------------------------*/
