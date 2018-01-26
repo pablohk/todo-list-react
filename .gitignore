@@ -1,0 +1,4 @@
+.DS_Store
+# Ignore all . but include .gitignore file
+.*
+!/.gitignore

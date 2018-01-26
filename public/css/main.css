@@ -1,0 +1,80 @@
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  src: url(http://fonts.gstatic.com/s/roboto/v18/Hgo13k-tfSpn0qi1SFdUfaCWcynf_cDxXwCLxiixG1c.ttf) format('truetype')
+}
+
+/* Global config -----------------------------------------*/
+
+html {
+  font-size: 10px;
+  font-family: Roboto;
+  line-height: 1.2em;
+}
+
+* {
+  color: #000;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-right{
+  position: absolute;
+  top:0px;
+  right: 0px;
+  color:blue;
+}
+#root{
+  width: 70%;
+  margin:10% 15%;
+  padding:5%;
+  line-height: 1.1rem;
+  border: 2px solid red;
+}
+
+header{
+  position: relative;
+  color:red;
+  text-align: center;
+}
+.list-group{
+  margin-top:2rem;
+}
+
+.list-group-item{
+  display: flex;
+  flex-flow: row nowrap;
+  align-content:center;
+}
+.list-group-item > *{
+  margin-right: 2rem;
+
+}
+
+/* Responsive Media Queries --------------------------*/
+
+@media only screen and (min-width: 481px) and (max-width:767px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width:1023px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1823px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 1824px) {
+  html {
+    font-size: 26px;
+  }
+}
