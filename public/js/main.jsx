@@ -37,7 +37,7 @@ const Todo = ({todo, remove}) => {
 
 const TodoList = ({todos, remove}) => {
   const todoNode = todos.map((todo) => {
-    return (<Todo todo={todo} key={todo.id} remove={remove}/>);
+    return (<Todo todo={todo} key={todo.createdAt} remove={remove}/>);
   });
   return (<div className="list-group">{todoNode}</div>);
 };
@@ -47,7 +47,7 @@ const RemovedList= (props)=>{
     <div>
       <ul className="list-group">
         <p>Deleted itmes</p>
-        {props.remov.map((elem)=><li className="list-group-item" key={elem.id}>
+        {props.remov.map((elem)=><li className="list-group-item" key={elem.createdAt}>
           task {elem.id}: {elem.text}</li>)}
       </ul>
     </div>);
