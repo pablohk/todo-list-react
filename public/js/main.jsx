@@ -111,7 +111,7 @@ class TodoApp extends React.Component{
       data: []
     };
     this.removed=[];
-    this.apiUrl = 'http://5a6b0a4f8bdfbe0012adc187.mockapi.io/api/todos';
+    this.apiUrl = 'https://5a6b0a4f8bdfbe0012adc187.mockapi.io/api/todos';
   }
 
   componentDidMount(){
